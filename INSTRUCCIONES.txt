@@ -1,0 +1,17 @@
+DNZ MOBILES — SEGUNDA ETAPA (2026)
+
+1. Abrir index.html con Live Server en VS Code.
+2. Flujo: Inicio > Fundas > iPhone > Ver detalles > Cotizar por WhatsApp.
+3. Los accesorios también tienen botón Ver detalles.
+4. detalle.html es UNA sola plantilla para todos los productos.
+5. js/catalogo.js contiene precios, imágenes, colores, modelos y compatibilidades.
+6. js/tienda.js crea las tarjetas y filtros; js/detalle.js llena la ficha y genera el WhatsApp.
+7. Las imágenes son las extraídas del PDF original; se ha ajustado el fondo de sus contenedores a un color estimado de sus esquinas para disimular cortes, sin alterar el contenido fotográfico.
+8. No se muestran cantidades de stock. Disponibilidad se confirma por WhatsApp.
+9. Para cambiar una imagen, sustituir el archivo .webp por otro con idéntico nombre, o editar su ruta en js/catalogo.js.
+10. Revisa el resultado localmente ANTES de hacer Commit to main y Push origin.
+
+FUENTE: Catálogo DNZ Mobiles, Colección 2026, 20 páginas.
+Compatibilidad que dice "consulta por WhatsApp" se mantiene sin inventar modelos.
+No se agregaron ofertas ni precios ajenos al PDF.
+Nota: las fotografías originales pueden mostrar accesorios decorativos; revisa con el vendedor qué está incluido.
