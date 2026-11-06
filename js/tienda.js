@@ -6,10 +6,19 @@ const message=(p,chosen='')=>`Hola, vi ${p.nombre} en la página de DNZ Mobiles 
 const waLink=(p,chosen='')=>'https://wa.me/'+WA+'?text='+encodeURIComponent(message(p,chosen));
 function card(p,chosen=''){
  let label=chosen?'Para iPhone '+chosen:p.categoria==='fundas'?(p.modelos.length?p.modelos.length+' modelos de iPhone':'Modelo a consultar'):'Cotización por WhatsApp';
- return `<article class="product reveal"><div class="product-img" style="background:${p.fondoImagen||'#f0edeb'}"><img loading="lazy" src="${p.imagen}" alt="${p.nombre}"></div><div class="product-body"><span class="mini">${label}</span><h3>${p.nombre}</h3><div class="price">${money(p.precio)}</div><p>${p.descripcion}</p><p class="mini">Colores: ${p.colores.join(' · ')}</p><a class="btn btn-dark" target="_blank" rel="noopener noreferrer" href="detalle.html?id=${encodeURIComponent(p.id)}${chosen?'&modelo='+encodeURIComponent(chosen):''}">Ver detalles →</a></div></article>`;
+ return `<article class="product reveal"><div class="product-img" style="background:${p.fondoImagen||'#f0edeb'}"><img loading="lazy" src="${p.imagen}" alt="${p.nombre}"></div><div class="product-body"><span class="mini">${label}</span><h3>${p.nombre}</h3><div class="price">${money(p.precio)}</div><p>${p.descripcion}</p><p class="mini">Colores: ${p.colores.join(' · ')}</p><a class="btn btn-dark" target="_blank" rel="noopener noreferrer" href="detalle.html?id=${encodeURIComponent(p.id)}${chosen?'&modelo='+encodeURIComponent(chosen):''}">Ver detalles <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>`;
 }
 function show(items,container){const el=document.getElementById(container);if(!el)return;el.innerHTML=items.length?items.map(p=>card(p,model)).join(''):'<div class="empty">No encontramos productos para esta búsqueda. Puedes consultar por WhatsApp.</div>';animate();}
 function animate(){const els=document.querySelectorAll('.reveal:not(.visible)');if(!('IntersectionObserver'in window)){els.forEach(e=>e.classList.add('visible'));return}const io=new IntersectionObserver((entries,obs)=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:.08});els.forEach(e=>io.observe(e));}
+function replaceTextIcons(){
+ const arrow='<svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+ const wa='<svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" stroke="none" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20z"/></svg>';
+ document.querySelectorAll('a,button').forEach(el=>{
+  const t=el.textContent.trim();
+  if(/WhatsApp/i.test(t)){el.innerHTML=wa+' '+t.replace(/[↗✆]/g,'').trim();}
+  else if(/[→↗]/.test(t)){el.innerHTML=t.replace(/[→↗]/g,'').trim()+' '+arrow;}
+ });
+}
 function setup(){const page=document.body.dataset.page;document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());
  if(page==='inicio'){show(CATALOGO.filter(p=>p.categoria==='fundas').slice(0,4),'destacados');}
  if(page==='modelos'){const all=[...new Set(CATALOGO.filter(p=>p.categoria==='fundas').flatMap(p=>p.modelos))];const order=x=>{const m=x.match(/^(XR|\d+)/);return m?(m[1]==='XR'?10:Number(m[1])):99};all.sort((a,b)=>order(a)-order(b)||a.localeCompare(b));const grid=document.getElementById('modelos-grid');const input=document.getElementById('buscar-modelo');const render=()=>{const q=input.value.toLowerCase();grid.innerHTML=all.filter(m=>('iphone '+m).toLowerCase().includes(q)).map(m=>`<a class="model reveal" href="productos.html?modelo=${encodeURIComponent(m)}"><strong>iPhone ${m}</strong><span>Ver fundas compatibles →</span></a>`).join('')||'<div class="empty">Sin coincidencias.</div>';animate()};input.addEventListener('input',render);render();}
