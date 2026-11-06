@@ -220,3 +220,18 @@ a{transition:color .22s ease}
 @media(prefers-reduced-motion:reduce){
  *,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
 }
+
+/* DNZ: fondo tradicional, producto sin recuadro y movimiento */
+.product-img{background:transparent!important;padding:15px}
+.product-img img{object-fit:contain!important;mix-blend-mode:multiply;transition:transform .55s cubic-bezier(.2,.8,.2,1),filter .35s}
+.product:hover .product-img img{transform:scale(1.07);filter:contrast(1.06) saturate(1.08)}
+.detail-photo{background:transparent!important;border:0!important;box-shadow:none!important;padding:18px}
+.detail-photo img{mix-blend-mode:multiply;transition:transform .5s}
+.detail-photo:hover img{transform:scale(1.035)}
+.hero-visual img{animation:dnzFloat 7s ease-in-out infinite}
+@keyframes dnzFloat{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-11px) rotate(-1deg)}}
+.btn,.pill,.float-wa{transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s,background .28s}
+.btn:active,.pill:active,.float-wa:active{transform:scale(.98)}
+.category,.model,.step{transition:transform .38s cubic-bezier(.2,.8,.2,1),box-shadow .38s,border-color .3s}
+.category:hover,.model:hover,.step:hover{transform:translateY(-7px)}
+@media(prefers-reduced-motion:reduce){.hero-visual img{animation:none!important}}
