@@ -235,3 +235,7 @@ a{transition:color .22s ease}
 .category,.model,.step{transition:transform .38s cubic-bezier(.2,.8,.2,1),box-shadow .38s,border-color .3s}
 .category:hover,.model:hover,.step:hover{transform:translateY(-7px)}
 @media(prefers-reduced-motion:reduce){.hero-visual img{animation:none!important}}
+
+.button-icon{width:17px;height:17px;display:inline-block;vertical-align:middle;flex:0 0 17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s ease}
+.whatsapp-icon{fill:currentColor;stroke:none}
+.btn:hover .button-icon,.pill:hover .button-icon,.float-wa:hover .button-icon{transform:translateX(3px)}
