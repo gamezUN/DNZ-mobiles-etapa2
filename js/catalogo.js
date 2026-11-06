@@ -1031,7 +1031,6 @@ const CATALOGO = [
     "modelos": [],
     "descripcion": "Audífonos inalámbricos U-Volt con estuche de carga. Diseño compacto y cómodo para usar todo el día.",
     "categoria": "audifonos",
-    "imagen": "imagenes/accesorios/a20.webp",
-    "fondoImagen": "#000000"
+    "imagen": "https://u-volt.com/wp-content/uploads/2024/08/UVTWS002-800x800.png"
   }
 ];
